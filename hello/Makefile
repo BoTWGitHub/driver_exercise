@@ -1,3 +1,4 @@
+KERNEL_PATH=~/Download/linux
 obj-m := hello.o
 
 all:
@@ -5,3 +6,9 @@ all:
 
 clean:
 	make -C /lib/modules/$(shell uname -r)/build M=$(PWD) clean
+
+cross_build:
+	make -C $(KERNEL_PATH) M=$(PWD) ARCH=arm64 CROSS_COMPILE=aarch64-linux-gnu- modules
+
+cross_clean:
+	make -C $(KERNEL_PATH) M=$(PWD) ARCH=arm64 CROSS_COMPILE=aarch64-linux-gnu- clean
