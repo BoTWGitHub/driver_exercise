@@ -61,7 +61,7 @@ ssize_t devone_read(struct file *filp, char __user *buf, size_t count, loff_t *f
 	printk("%s: count %d pos %lld\n", __func__, count, *f_pos);
 	
 	for(i=0;i<count;i++){
-		if(copy_to_user(&buf[0], &val, 1)){
+		if(copy_to_user(&buf[i], &val, 1)){
 			retval = -EFAULT;
 			goto out;
 		}
